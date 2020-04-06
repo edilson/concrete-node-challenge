@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 
 const connection = () => {
-  mongoose.connect(process.env.MONGO_URL, {
+  const url =
+    process.env.NODE_ENV === 'test'
+      ? process.env.MONGO_URL_TEST
+      : process.env.MONGO_URL;
+
+  mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

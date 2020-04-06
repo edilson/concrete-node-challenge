@@ -4,8 +4,8 @@
   "description": "Concrete's node challenge",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development nodemon server.js",
+    "test": "cross-env NODE_ENV=test mocha --exit"
   },
   "author": "Edilson Silva",
   "license": "ISC",
@@ -18,9 +18,13 @@
     "mongoose": "^5.9.7"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
+    "mocha": "^7.1.1",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.2"
   }
