@@ -25,4 +25,18 @@ module.exports = {
         .json({ error: 'Unable to create user, invalid data.' });
     }
   },
+
+  findUser(request, response) {
+    User.findById(request.headers['x-access-token'], async (error, user) => {
+      try {
+        if (error) {
+          throw new Error();
+        } else {
+          return response.json({ user });
+        }
+      } catch (error) {
+        return response.status(404).json({ error: 'User not found.' });
+      }
+    });
+  },
 };

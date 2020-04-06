@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const routers = require('../routes');
 const connection = require('./connection-config');
+
 const app = express();
 
 mongoose.connect(connection.database, {
@@ -11,6 +12,7 @@ mongoose.connect(connection.database, {
   useCreateIndex: true,
 });
 app.use(express.json());
+
 app.use(routers);
 
 module.exports = app;

@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-module.exports = () => {
+const handleAuthentication = () => {
   return (request, response, next) => {
-    let token =
-      request.headers['x-access-token'] || request.headers['authorization'];
+    let token = request.headers['authorization'];
 
     if (token) {
       if (token.startsWith('Bearer ')) {
@@ -12,7 +11,7 @@ module.exports = () => {
       }
       jwt.verify(token, process.env.SECRET, (error, decoded) => {
         if (error) {
-          return response.status(400).json({
+          return response.status(401).json({
             success: false,
             message: 'Invalid token',
           });
@@ -22,10 +21,12 @@ module.exports = () => {
         }
       });
     } else {
-      return response.status(401).send({
+      return response.status(403).send({
         success: false,
-        message: 'Nenhum token foi encontrado.',
+        message: 'No token found.',
       });
     }
   };
 };
+
+module.exports = handleAuthentication;

@@ -18,7 +18,7 @@ module.exports = {
           request.body.email != user.email ||
           !(await bcrypt.compare(request.body.password, user.password))
         ) {
-          response.status(400).json({
+          response.status(401).json({
             success: false,
             message: 'Authentication failed. Please provide a valid user.',
           });
