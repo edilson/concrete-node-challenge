@@ -1,18 +1,12 @@
 const express = require('express');
-const mongoose = require('mongoose');
 
+const database = require('./database');
 const routers = require('../routes');
-const connection = require('./connection-config');
 
 const app = express();
 
-mongoose.connect(connection.database, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+database();
 app.use(express.json());
-
 app.use(routers);
 
 module.exports = app;
