@@ -32,7 +32,7 @@ module.exports = {
         if (error) {
           throw new Error();
         } else {
-          return response.json({ user });
+          return response.json(user);
         }
       } catch (error) {
         return response.status(404).json({ error: 'User not found.' });

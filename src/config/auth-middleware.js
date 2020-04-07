@@ -21,7 +21,7 @@ const handleAuthentication = () => {
         }
       });
     } else {
-      return response.status(403).send({
+      return response.status(401).send({
         success: false,
         message: 'No token found.',
       });
